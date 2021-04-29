@@ -2,8 +2,11 @@ package student_player;
 
 import boardgame.Move;
 
+import pentago_twist.PentagoMove;
 import pentago_twist.PentagoPlayer;
 import pentago_twist.PentagoBoardState;
+
+import java.util.AbstractMap;
 
 /** A player file submitted by a student. */
 public class StudentPlayer extends PentagoPlayer {
@@ -14,7 +17,7 @@ public class StudentPlayer extends PentagoPlayer {
      * associate you with your agent. The constructor should do nothing else.
      */
     public StudentPlayer() {
-        super("xxxxxxxxx");
+        super("260851102");
     }
 
     /**
@@ -23,15 +26,32 @@ public class StudentPlayer extends PentagoPlayer {
      * make decisions.
      */
     public Move chooseMove(PentagoBoardState boardState) {
-        // You probably will make separate functions in MyTools.
-        // For example, maybe you'll need to load some pre-processed best opening
-        // strategies...
-        MyTools.getSomething();
+        long start = System.currentTimeMillis();
+        int depth = 1;
+        int maxVal = Integer.MIN_VALUE;
+        Move bestMove = null;
 
-        // Is random the best you can do?
-        Move myMove = boardState.getRandomMove();
+        for (Move move : boardState.getAllLegalMoves()) {
+            /*
+            Determine depth. Depends on how many moves are left to be played.
+             */
+            if (boardState.getTurnNumber() > 10)
+                depth = 2;
+            if (boardState.getTurnNumber() > 15)
+                depth = 3;
+
+            int value = MyTools.alphabeta(boardState, depth, boardState.getTurnPlayer(), Integer.MIN_VALUE,
+                    Integer.MAX_VALUE, true);
+            if (value > maxVal) {
+                maxVal = value;
+                bestMove = move;
+            }
+
+            if (System.currentTimeMillis() - start > 1995)
+                return bestMove;
+        }
 
         // Return your move to be processed by the server.
-        return myMove;
+        return bestMove;
     }
 }
