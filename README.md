@@ -23,20 +23,12 @@ Allowing quadrants to be flipped/rotated introduces significant complexity and y
 
 ---
 
-# Navigate through the scripts
+# Implementation
+To see the Alpha-Beta pruning and the heuristic function implementation, navigate to 
 
     src  
-    |  --- autoplay ( Autoplays games; can be ignored) 
-    | --- boardgame (Package for implementing boardgames, logging, GUI, and server TCP protocol, can be ignored for this project)
-    | --- student_player (Package containing your agent)
-    |      | --- StudentPlayer.java (The class you will implement your AI within)
-    |      | --- MyTools.java (Placeholder for any extra code you may need)} \nonumber 
-    | --- pentago_swap (The package implementing all game logic)
-    |      | --- PentagoBoardPanel.java (Implements the GUI, can be ignored)
-    |      | --- PentagoBoard.java (Used for server logic, can be ignored)
-    |      | --- PentagoCoord.java (Simple class representing a board coordinate)
-    |      | --- PentagoMove.java (A move object for Pentago. Relevant functions)
-    |      | --- PentagoBoardState.java (Implements all game logic, most important. Note that PentagoBoardState (PBS) manages} logic concerning whose turn it is, rules, and the positions of all pieces)
-    |      | --- PentagoPlayer.java (Abstract class that all players extend)} 
-    |      | --- RandomPentagoPlayer.java (A random player, can be used as a baseline)
+    | --- student_player 
+    |      | --- StudentPlayer.java 
+    |      | --- MyTools.java 
 
+For a detailed report, see [documentation](report.pdf)
